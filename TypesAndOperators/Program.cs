@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 //case one
+/*
 namespace TypesAndOperators
 {
     public class Program
@@ -38,10 +39,10 @@ namespace TypesAndOperators
         }
     }
 }
-
-// See https://aka.ms/new-console-template for more information
+*/
 
 //case two
+/*
 namespace TypesAndOperators
 {
     public class Program
@@ -92,3 +93,112 @@ namespace TypesAndOperators
         }
     }
 }
+*/
+
+//case three
+/*
+namespace TypesAndOperators
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Введите слово на русском языке");
+            Console.WriteLine("Пример: дом, школа, лето, зима, осень, весна, месяц, год, имя, возраст");
+            string word = Console.ReadLine();
+
+            switch (word)
+            {
+                case "дом":
+                    Console.WriteLine("house");
+                    break;
+                case "школа":
+                    Console.WriteLine("school");
+                    break;
+                case "лето":
+                    Console.WriteLine("summer");
+                    break;
+                case "зима":
+                    Console.WriteLine("winter");
+                    break;
+                case "осень":
+                    Console.WriteLine("autumn");
+                    break;
+                case "весна":
+                    Console.WriteLine("spring");
+                    break;
+                case "месяц":
+                    Console.WriteLine("month");
+                    break;
+                case "год":
+                    Console.WriteLine("year");
+                    break;
+                case "имя":
+                    Console.WriteLine("name");
+                    break;
+                case "возраст":
+                    Console.WriteLine("age");
+                    break;
+                default:
+                    Console.WriteLine("Мы ещё не знаем, как переводится это слово");
+                    break;
+            }
+            Console.WriteLine();
+        }
+    }
+}
+*/
+
+//case four.1
+/*
+namespace TypesAndOperators
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Введите целое число");
+            int number = Convert.ToInt32(Console.ReadLine());
+
+            if (number % 2==0) 
+            {
+                Console.WriteLine("число чётное");
+            }
+            else 
+            {
+                Console.WriteLine("число нечётное");
+            }
+
+            Console.WriteLine();
+        }
+    }
+}
+*/
+
+//case four.2
+/*
+namespace TypesAndOperators
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Введите целое число. Версия 2");
+            int number = Convert.ToInt32(Console.ReadLine());
+            int result = number % 2;
+            switch (result == 0)
+            {
+                case true:
+                    Console.WriteLine("Целое число");
+                    break;
+
+                default:
+                    Console.WriteLine("Не целое число");
+                    break;
+            }
+
+            Console.WriteLine();
+        }
+    }
+}
+*/
