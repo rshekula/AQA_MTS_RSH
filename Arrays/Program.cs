@@ -3,3 +3,5 @@ Console.WriteLine("Hello, World!");
 
 int[] array;
 
+int n = 4;
+array = new int[n];
