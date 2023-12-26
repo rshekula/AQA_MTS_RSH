@@ -42,7 +42,7 @@ namespace TypesAndOperators
 */
 
 //case two
-/*
+
 namespace TypesAndOperators
 {
     public class Program
@@ -51,49 +51,36 @@ namespace TypesAndOperators
         {
             Console.WriteLine("Введите целое число");
             int number = Convert.ToInt32(Console.ReadLine());
-
             if (number >= -50 && number <= 50)
             {
                 if (number >= -40 && number <= -10)
                 {
                     Console.WriteLine("Число входит в промежуток от -40 до -10");
                 }
-                else
+                else if (number >= -9 && number <= 0)
                 {
-                    if (number >= -9 && number <= 0)
+                    Console.WriteLine("Число входит в промежуток от -9 до 0");
+                }
+                else if (number >= 1 && number <= 10)
                     {
-                        Console.WriteLine("Число входит в промежуток от -9 до 0");
+                        Console.WriteLine("Число входит в промежуток от 1 до 10");
                     }
-                    else
-                    {
-                        if (number >= 1 && number <= 10)
+                    else if (number >= 11 && number <= 40)
                         {
-                            Console.WriteLine("Число входит в промежуток от 1 до 10");
+                            Console.WriteLine("Число входит в промежуток от 11 до 40");
                         }
                         else
                         {
-                            if (number >= 11 && number <= 40)
-                            {
-                                Console.WriteLine("Число входит в промежуток от 11 до 40");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Число не входит ни в один из промежутков");
-                            }
+                            Console.WriteLine("Число не входит ни в один из промежутков");
                         }
-                    }
-                }
             }
             else
             {
                 Console.WriteLine("Число за пределами промежутка от -50 до 50");
             }
-
-
         }
     }
 }
-*/
 
 //case three
 /*
