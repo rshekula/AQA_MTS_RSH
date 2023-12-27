@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 // Задание2
 namespace Arrays
@@ -19,30 +21,36 @@ namespace Arrays
             }
             Console.WriteLine();
             int pDelete = Convert.ToInt32(Console.ReadLine());
-
-            bool p = false;
-            for (int i = 0; i < number.GetLength(0); i++)
+            int del = 0;
+            foreach (int item in number)
             {
-                if (number[i] == pDelete)
-                {
-                    number[i] = 0;
-                    p = true;
-                }
-            }
-            if (p)
-            {
-                Console.WriteLine($"Новый массив:");
-                foreach (int play2 in number)
-                {
-                    Console.Write($"{play2} ");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Число {pDelete} не найдено");
+                if (item == pDelete) 
+                del++;
             }
 
-            Console.ReadKey();
+            int[] newNumber = new int[number.Length - del];
+            int novnum = 0;
+
+            foreach (var item in number)
+            {
+                if (item != pDelete)
+                {
+                    newNumber[novnum] = item;
+                    novnum++;
+                }
+            }
+            if (del > 0)
+                {
+                    Console.WriteLine("Новый массив:");
+                    foreach (var play2 in newNumber)
+                    {
+                        Console.Write(play2 + " ");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Число {pDelete} не найдено");
+                }
         }
     }
 }
