@@ -1,5 +1,8 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Classes.Models;
 
 namespace Classes
@@ -8,271 +11,65 @@ namespace Classes
     {
         static void Main(string[] args)
         {
-            int[] array = { 1, 8, 14, -4, 0, 7 };
-            
-            foreach (var item in array)
-            {
-                Console.Write($"{item}\t");
-            }
+            // задание 1
+            Console.WriteLine("Задание 1");
             Console.WriteLine();
 
-            Array.Reverse(array);
-            {
-                foreach (var item in array)
-                {
-                    Console.Write($"{item}\t");
-                }
+            Phone phone1 = new Phone();
+            Phone phone2 = new Phone("79990001122", "Samsung");
+            Phone phone3 = new Phone("79996663333", "Samsung2", 15);
+            phone1.Print();
+            phone2.Print();
+            phone3.Print();
+            Console.WriteLine();
 
-                Console.WriteLine();
-            }
+            phone1.receiveCall("Дима");
+            phone2.receiveCall("Катя");
+            phone3.receiveCall("Петя");
 
-            PrintArray(array);
-            
-            void PrintArray(int[] arr) {
-                foreach (var item in arr)
-                {
-                    Console.Write($"{item}\t");
-                }
+            Console.WriteLine(phone1.getNumber());
+            Console.WriteLine(phone2.getNumber());
+            Console.WriteLine(phone3.getNumber());
+            Console.WriteLine();
 
-                Console.WriteLine();
-            }
-            
-            
-            // -=================== Метод без параметров ===================-
-            void MethodWithoutParameters()
-            {
-                // Тело метода
-            }
-            
-            
-            // -=================== Метод без возвращаемого значения ===================-
-            void PrintMessage(string message)
-            {
-                Console.WriteLine(message);
-            }
-            
-            
-            // -=================== Метод с параметрами по умолчанию ===================-
-            void DisplayGreeting(string greetingMessage, string name = "Гость")
-            {
-                Console.WriteLine($"{greetingMessage}, {name}!");
-            }
+            phone1.sendMessage(
+                "70006661122",
+                "71110441133");
 
-            // -=================== Метод с переменным числом аргументов ===================-
-            int CalculateSum(params int[] numbers)
-            {
-                int sum = 0;
+            phone2.sendMessage(
+                "72220551177",
+                "72220088888");
 
-                foreach (int num in numbers)
-                {
-                    sum += num;
-                }
-                return sum;
-            }
+            phone3.sendMessage(
+                "75550009999",
+                "75550009090",
+                "75550003333",
+                "75550002321",
+                "75550003443");
             
-            int sum1 = CalculateSum(1, 2, 3, 4, 5);
-            int sum2 = CalculateSum(); // Пустой вызов
+            Console.WriteLine("=================================");
+            
+            // задание 2
+            Console.WriteLine("Задание 2");
+            CreditCard creditCard1 = new CreditCard("8989999902023434", 50000);
+            CreditCard creditCard2 = new CreditCard("8955559911123335", 33333);
+            CreditCard creditCard3 = new CreditCard("8000900010005000", 0);
 
-            Console.WriteLine("Sum 1: " + sum1);
-            Console.WriteLine("Sum 2: " + sum2);
+            Console.WriteLine("Информация по картам до операций");
+            creditCard1.InfoCreditCard();
+            creditCard2.InfoCreditCard();
+            creditCard3.InfoCreditCard();
             
-            // -=================== Передача параметров ===================-
-            // -=================== По значению
-            
-            void SimpleAdd(int x, int y)                //По умолчанию аргументы передаются по значению,
-            {
-                int ans = x + y;
-                // Вызывающий код не увидит эти изменения, т.к. модифицируется копия исходных данных,
-                
-                // Разкомментировать
-                //х = 10000;
-                //у = 88888;
-            }
+            //положили деньги на первые две карты и снимаем с третьей
+            creditCard1.PutMoney(5000);
+            creditCard2.PutMoney(43);
+            creditCard3.ReceiveMoney(55555);
 
-            // -=================== По ссылке
-            // -=================== Out
-            // Значения выходных параметров должны быть установлены внутри вызываемого метода.
-            static void OutAdd (int x, int y, out int ans)
-            {
-                ans = x + y;
-            }
-            // Присваивать начальные значения локальным переменным, используемым как выходные параметры, не обязательно
-            // при условии, что они впервые используются
-            OutAdd(90, 90, out int ans); // - Первый вариант
-            
-            //int ans;
-            //Add(90, 90, out ans); // - Второй вариант
-            
-            Console.WriteLine("OutAdd: 90 + 90 = {0}", ans);
-            
-            // Практическое применение в тестировании - возврат данных
-            void FillTheseValues(out int a, out string b, out bool c)
-            {
-                a = 9;
-                b = "Enjoy your string.";
-                c = true;
-            }
+            Console.WriteLine("Информация по картам после операций");
+            creditCard1.InfoCreditCard();
+            creditCard2.InfoCreditCard();
+            creditCard3.InfoCreditCard();
 
-
-            // -=================== Ref
-            void ModifyValue(ref int value)
-            {
-                value = value * 2;
-            }
-
-            int mainValue = 5;      // Если закоментировать - будет ошибка
-            Console.WriteLine($"mainValue is {mainValue}");
-            ModifyValue(ref mainValue);
-            Console.WriteLine($"mainValue now is {mainValue}");
-            
-            // -=================== Возврат значений ===================-
-            // -=================== Возврат значения
-            int GetPersonAge()
-            {
-                return 25;
-            }
-            
-            Console.WriteLine($"Age: {GetPersonAge()}");
-            
-            // -=================== Возврат нескольких значений
-            (string, int) GetPersonInfo()
-            {
-                return ("John", 25);
-            }
-
-            var person = GetPersonInfo();
-            Console.WriteLine($"Name: {person.Item1}, Age: {person.Item2}");
-            
-            // -=================== Сжатый метод
-            int ShortAdd(int х, int у) => х + у;
-            
-            // -=================== Рекурсивная функция
-            int Factorial(int n)
-            {
-                if (n == 1) return 1;
- 
-                return n * Factorial(n - 1);
-            }
-            
-            int factorial4 = Factorial(4);  // 24
-            int factorial5 = Factorial(5);  // 120
-            int factorial6 = Factorial(6);  // 720
- 
-            Console.WriteLine($"Факториал числа 4 = {factorial4}");
-            Console.WriteLine($"Факториал числа 5 = {factorial5}");
-            Console.WriteLine($"Факториал числа 6 = {factorial6}");
-            
-            // -=================== Классы ===================-
-            // -=================== Структура класса
-            EmptyClass emptyClassObject = new EmptyClass();
-
-            Person personObj = new Person();
-            
-            personObj.Print();
-            
-            personObj.name = "Alex";
-            personObj.age = 45;
-            personObj.Print();
-            
-            // -=================== Создание конструкторов
-            ConstructorByDefault constructorByDefault = new ConstructorByDefault();
-            
-            ConstructorCustom constructorCustom1 = new ConstructorCustom(1);
-            ConstructorCustom constructorCustom2 = new ConstructorCustom("test");
-
-            ConstructorFull constructorFull1 = new ConstructorFull();
-            ConstructorFull constructorFull2 = new ConstructorFull(1);
-            ConstructorFull constructorFull3 = new ConstructorFull("test");
-            
-            // -=================== Цепочка вызова конструкторов
-            PersonChain personChain1 = new PersonChain();
-            PersonChain personChain2 = new PersonChain("Alex");
-            PersonChain personChain3 = new PersonChain("Alex", 45);
-            
-            personChain1.Print();
-            personChain2.Print();
-            personChain3.Print();
-            
-            // -=================== Первичные конструкторы
-            // PersonPrimaryConstructors personPrimaryConstructors1 = new PersonPrimaryConstructors();          - Ошибка
-            PersonPrimaryConstructors personPrimaryConstructors2 = new PersonPrimaryConstructors(name: "Alex");
-            // PersonPrimaryConstructors personPrimaryConstructors3 = new PersonPrimaryConstructors(age: 45);   - Ошибка
-            PersonPrimaryConstructors personPrimaryConstructors4 = new PersonPrimaryConstructors(name: "Alex", age: 45);
-            
-            personPrimaryConstructors2.Print();
-            personPrimaryConstructors4.Print();
-            
-            // -=================== This
-            PersonThis personThis = new PersonThis("Alex", 45);
-            // -=================== Регулярные выражения (Regex) ===================-
-            // -=================== Cоответствие строки регулярному выражению
-            string input = "Hello, 123!";
-            string pattern = @"(\d+)"; // Шаблон: одна или более цифр
-
-            bool isMatch = Regex.IsMatch(input, pattern);
-
-            if (isMatch)
-            {
-                Console.WriteLine("Строка содержит цифры.");
-            }
-            else
-            {
-                Console.WriteLine("Строка не содержит цифры.");
-            }
-            // -=================== Извлечение подстрок с использованием групп
-            // -=================== Пример 1
-            string input1 = "Дата: 2023-11-19";
-            string pattern1 = @"Дата: (\d{4}-\d{2}-\d{2})"; // Группа для извлечения даты
-
-            Match match = Regex.Match(input1, pattern1);
-
-            if (match.Success)
-            {
-                string date = match.Groups[1].Value;
-                Console.WriteLine($"Извлеченная дата: {date}");
-            }
-            else
-            {
-                Console.WriteLine("Дата не найдена.");
-            }
-
-            // -=================== Пример 2
-            string input11 = "Дата: 2023-11-19, Дата: 2023-12-25";
-            string pattern12 = @"Дата: (\d{4}-\d{2}-\d{2})"; // Группа для извлечения даты
-
-            MatchCollection matches = Regex.Matches(input11, pattern12);
-
-            if (matches.Count > 0)
-            {
-                Console.WriteLine($"Найдено {matches.Count} вхождений:");
-
-                foreach (Match matchItem in matches)
-                {
-                    string date = matchItem.Groups[1].Value;
-                    Console.WriteLine($"Извлеченная дата: {date}");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Дата не найдена.");
-            }
-
-            // -=================== Замена с использованием регулярного выражения
-            string input2 = "Текст с цифрами: 12345 и 67890";
-            string pattern2 = @"\d+"; // = @"(\d+) Шаблон: одна или более цифр
-
-            string replacement = "###";
-
-            string result2 = Regex.Replace(input2, pattern2, replacement);
-
-            Console.WriteLine($"Исходная строка: {input2}");
-            Console.WriteLine($"Строка после замены: {result2}");
-
-            //возврат значений
-            int GetPersonAge()
-            {
-                return 25;
-            }
         }
     }
 }
