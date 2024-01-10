@@ -361,3 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Exceptions/Exceptions/CheckedExceptions.cs
+/Exceptions/Exceptions/CustomArgumentException.cs
+/Exceptions/Exceptions/CustomException.cs
+/Exceptions/Exceptions/CustomExceptionUsage.cs
+/Exceptions/Exceptions/Employee.cs
+/Exceptions/Exceptions/ExceptionUsage.cs
+/Exceptions/Exceptions/InvalidInputException.cs
+/Exceptions/Exceptions/ThrowExceptions.cs
+/Exceptions/Exceptions/UncheckedExceptions.cs
