@@ -1,83 +1,41 @@
-﻿
-// -====================== Ошибка ======================-
-/*
-int[] array = new int[3];
-int value = array[5];
-*/
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-// -====================== Исключение ======================-
-
-using Exceptions;
-
-/*
-Object obj = null;
-obj.GetHashCode();
-*/
-
-// -====================== Checked Exceptions ======================-
-CheckedExceptions checkedExceptions = new CheckedExceptions();
-// checkedExceptions.ReadFile("file.txt");
-
-// -====================== Unchecked Exceptions ======================-
-UncheckedExceptions uncheckedExceptions = new UncheckedExceptions();
-// uncheckedExceptions.DivideNumbers(1, 0);
-
-// -====================== Использования try -> catch -> finally ======================-
-ExceptionUsage exceptionUsage = new ExceptionUsage();
-//exceptionUsage.Template();
-//exceptionUsage.ShortForm1();
-//exceptionUsage.ShortForm2();
-//exceptionUsage.ShortForm3();
-
-//exceptionUsage.ManyCatch();
-
-/*
-try
+namespace Exceptions
 {
-    exceptionUsage.RunException(1, 0);
-}
-catch (Exception e)
-{
-    Console.WriteLine(e.Message);
-}
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            try
+            {
+                Console.Write("INFO\nЛогин должен быть меньше 20 символов и не должен содержать пробелы.\n====\nВведите логин: ");
+                string login = Console.ReadLine();
 
-exceptionUsage.FilterCatch(1, 0);
-exceptionUsage.FilterCatch(0, 1);
-exceptionUsage.FilterCatch1(0, 1);
-exceptionUsage.FilterCatch1(1, 0);
-*/
+                Console.Write("====\nINFO\nПароль должен быть меньше 20 символов и не должен содержать пробелы.\nПароль должен содержать хотя бы одну цифру\n====\nВведите пароль: ");
+                string password = Console.ReadLine();
 
-// -====================== Обработка исключений и условные конструкции ======================-
-/*
-string? data = Console.ReadLine();
+                Console.Write("Введите пароль повторно: ");
+                string confirmPassword = Console.ReadLine();
 
-if (int.TryParse(data, out var x1))
-{
-    Console.WriteLine($"x = {x1}");
+                if (Authorization.CheckInputInfo(login, password, confirmPassword))
+                    Console.WriteLine("\nВсе данные корректны");
+            }
+            catch (WrongLoginException exLog)
+            {
+                Console.WriteLine($"\nОшибка при вводе логина: {exLog.Message}");
+            }
+            catch (WrongPasswordException exPas)
+            {
+                Console.WriteLine($"\nОшибка при вводе пароля: {exPas.Message}");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"\nОшибка: {e.Message}");
+            }
+        }
+    }
 }
-else
-{
-    Console.WriteLine("Некорректный ввод...");
-}
-
-try
-{
-    int x = Convert.ToInt32(data);
-}
-catch (FormatException e)
-{
-    Console.WriteLine(e);
-}
-*/
-
-// -====================== Пробрасывание исключения ======================-
-ThrowExceptions throwExceptions = new ThrowExceptions();
-//throwExceptions.CheckUsername();
-// throwExceptions.CheckUsername1();
-
-// -====================== Собственные исключения ======================-
-CustomExceptionUsage customExceptionUsage = new CustomExceptionUsage();
-//customExceptionUsage.Run();
-//customExceptionUsage.ProcessInput("  ");
-customExceptionUsage.UseCustomArgumentException();
-customExceptionUsage.UseCustomArgumentException1();
